@@ -1,0 +1,18 @@
+/* pages/home/home.wxss */
+@import "../../utils/animate.wxss";
+
+.process {
+  width: 28rpx;
+  height: 560rpx;
+  border-radius: 17rpx;
+  border: 6rpx solid #89d693;
+  background: #f1f1f1;
+  transform: rotate(-180deg);
+  margin: 0 30rpx;
+}
+
+.process_son {
+  width: 28rpx;
+  border-radius: 14rpx;
+  background: #3ede58;
+}

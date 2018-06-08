@@ -1,0 +1,8 @@
+<!--pages/home/home.wxml-->
+<view class='animated bounceInDown'>测试</view>
+<view>
+  <view>{{20}}</view>
+  <view class='process'>
+    <view class='process_son' style='height: {{20/200*100}}%;'></view>
+  </view>
+</view>
