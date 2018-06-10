@@ -1,8 +1,11 @@
 <!--pages/home/home.wxml-->
-<view class='animated bounceInDown'>测试</view>
-<view>
-  <view>{{20}}</view>
-  <view class='process'>
-    <view class='process_son' style='height: {{20/200*100}}%;'></view>
+<view class='question animated bounceInDown'>
+  <view class='title'>
+    <text>{{subject_title}}</text>
+  </view>
+  <view class='answers' wx:for='{{answers}}' wx:item='{{item}}'>
+    <view class='option'>
+      <text>{{item}}</text>
+    </view>
   </view>
 </view>
