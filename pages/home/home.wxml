@@ -1,11 +1,28 @@
 <!--pages/home/home.wxml-->
-<view class='question animated bounceInDown'>
-  <view class='title'>
-    <text>{{subject_title}}</text>
-  </view>
-  <view class='answers' wx:for='{{answers}}' wx:item='{{item}}'>
-    <view class='option'>
-      <text>{{item}}</text>
+<view class='question animated {{answerOver}}'>
+
+  <block>
+    <view class='title animated '>
+      <image src='../../images/subject_title_bg.png'></image>
+      <view class='title-text'><text>{{subject_title}}</text></view>
+      <view class='countdown-view'>
+        <canvas class="cir" canvas-id="canvasArc">
+        </canvas>
+      </view>
+    </view>
+  </block>
+  <view class='answer-view'>
+    <view wx:for='{{answers}}' wx:item='{{item}}' wx:key='{{id}}' data-index="{{index}}" bindtap='answer' class="answers">
+      <block wx:if='{{index % 2 == 0}}'>
+        <view class="{{index == clickIndex&&clickIndex!=='' ? answerColor : ''}} {{clickIndex == rightIndex ? '' : (rightIndex == index ? 'rightHit animated shake' : '')}} option animated bounceInLeft">
+          <text>{{item}}</text>
+        </view>
+      </block>
+      <block wx:if='{{index % 2 == 1}}'>
+        <view class="{{index == clickIndex&&clickIndex!=='' ? answerColor : ''}} {{clickIndex == rightIndex ? '' : (rightIndex == index ? 'rightHit animated shake' : '')}} option animated bounceInRight">
+          <text>{{item}}</text>
+        </view>
+      </block>
     </view>
   </view>
 </view>
