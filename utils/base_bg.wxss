@@ -16,27 +16,29 @@ page {
 
 .title image{
   width: 100%;
+  height: 380rpx;
   z-index: 0;
-  margin-top: 0;
-}
-
-.title-text{
   position: absolute;
-  width: 70%;
-  z-index: 10;
-  top: 12%;
-  left:120rpx;
+  top: 6%;
+  left:0;
   color: #333;
   font-weight: 500;
   font-size: 18pt;
 }
 
-.countdown-view{
-  width: 70%;
+.title-text{
   position: absolute;
-  z-index: 1;
-  top: 12%;
-  left:40%;
+  width: 80%;
+  z-index: 10;
+  top: 16%;
+  left:120rpx;
+  color: #000;
+  font-weight: 500;
+  font-size: 16pt;
+}
+
+.countdown-view{
+  width: 100%;
 }
 
 .club-view{
@@ -54,4 +56,5 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 24%;
 }

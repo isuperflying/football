@@ -5,8 +5,8 @@
   height: 100%;
 }
 .start-top-img{
-  width: 96%;
-  margin-left: 2%;
+  width: 80%;
+  margin-left: 10%;
   margin-top: 10%;
 }
 .start_btn{
@@ -15,8 +15,30 @@
   border-radius: 30px;
   font-size: 16pt;
   width: 300rpx;
-  height: 100rpx;
-  line-height: 100rpx;
-  margin-top: 30%;
+  height: 90rpx;
+  margin-top:10%;
+  line-height: 90rpx;
+  font-weight: 600;
+}
+.every_day_btn{
+  background-color: #fff;
+  color: #333;
+  border-radius: 30px;
+  font-size: 16pt;
+  width: 300rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 30rpx;
+  font-weight: 600;
+}
+.friends_btn{
+  background-color: #fff;
+  color: #333;
+  border-radius: 30px;
+  font-size: 16pt;
+  width: 300rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin-top: 30rpx;
   font-weight: 600;
 }

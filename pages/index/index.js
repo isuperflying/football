@@ -11,6 +11,9 @@ Page({
     
   },
   onLoad:function(){
+    wx.setNavigationBarTitle({
+      title: '世界杯大师',
+    })
     this.countdown();
   },
   start:function(){

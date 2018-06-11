@@ -2,13 +2,14 @@
 <view class='question animated {{answerOver}}'>
 
   <block>
+    
     <view class='title animated '>
       <image src='../../images/subject_title_bg.png'></image>
       <view class='title-text'><text>{{subject_title}}</text></view>
-      <view class='countdown-view'>
+    </view>
+    <view class='countdown-view'>
         <canvas class="cir" canvas-id="canvasArc">
         </canvas>
-      </view>
     </view>
   </block>
   <view class='answer-view'>

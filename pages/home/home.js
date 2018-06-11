@@ -6,7 +6,9 @@ var rightIndex;
 var initNum = 8; //倒计时数
 var spaceNum = 1000; //文字倒计时间隔
 var space = 1000; //环倒计时间隔
-
+var id = 1;
+// 页面渲染完成  
+var cxtArc
 Page({
   /**
    * 页面的初始数据
@@ -17,11 +19,15 @@ Page({
     clickIndex:'',
     answerOver:''
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '世界杯大师',
+    })
+    // 页面渲染完成  
+    cxtArc = wx.createCanvasContext('canvasArc');
     this.countdown();
     this.getData();
   },
@@ -29,10 +35,10 @@ Page({
   getData: function () {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1:8888/getfbdata',
+      url: 'https://www.antleague.com/getfbdata',
       method: 'GET',
       data: {
-        'id': 1
+        'id': id
       },
       success: function (res) {
         wx.hideLoading();
@@ -83,20 +89,32 @@ Page({
       tizz.setData({
         answerOver: 'shake'
       })
-    }, 20)
+    }, 300)
+    
+    setTimeout(function () {
+      tizz.setData({
+        clickIndex: '',
+        answerColor: '',
+        rightIndex:''
+      })
+      id++;
+      tizz.getData();
+      tizz.countdown();
+    }, 1500)
+
   },
 
   begin: - (1 / 2 * Math.PI),
   pai2: 2 * Math.PI,
   //canvas画圆环
   drawRang: function (precent) {
-    // 页面渲染完成  
-    var cxt_arc = wx.createCanvasContext('canvasArc');
+    
     var windowWidth = wx.getSystemInfoSync().windowWidth;
     var poaitionX = wx.getSystemInfoSync().windowWidth / 2;
-    //var cxt_arc = this.cxt_arc;
+    var cxt_arc = cxtArc;
+    console.log(cxt_arc)
     cxt_arc.setLineWidth(10);
-    cxt_arc.setStrokeStyle('#279e50');
+    cxt_arc.setStrokeStyle('#fff');
     cxt_arc.setLineCap('round')
     cxt_arc.beginPath();//开始一个新的路径   
     cxt_arc.arc(poaitionX, 30, 24, 0, this.pai2, false);//设置一个原点(106,106)，半径为100的圆的路径到当前路径  
@@ -112,12 +130,12 @@ Page({
       return;
     }
     cxt_arc.setLineWidth(6);
-    cxt_arc.setStrokeStyle('#ffd84f');
+    cxt_arc.setStrokeStyle('#fc5939');
     cxt_arc.setLineCap('round')
     cxt_arc.beginPath();//开始一个新的路径  
     cxt_arc.arc(poaitionX, 30, 24, this.begin, end, true);
     cxt_arc.stroke();//对当前路径进行描边  
-    cxt_arc.setFillStyle('#000');
+    cxt_arc.setFillStyle('#fff');
     cxt_arc.setFontSize(25);
     cxt_arc.fillText(this.data.countdownNum, poaitionX - 7, 40);
     cxt_arc.draw();
