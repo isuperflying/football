@@ -15,6 +15,24 @@ Page({
     wx.setNavigationBarTitle({
       title: '世界杯大师',
     })
+
+    app.userInfoReadyCallback = res => {
+      console.log('call back openid ' + res.data.openid)
+      that.insertUser(res.data.openid, score)
+    }
+
+    var that = this
+    let score = wx.getStorageSync('user_score') || 0
+    wx.getStorage({
+      key: 'openid',
+      success: function (res) {
+        that.insertUser(res.data, score)
+      },
+      fail: function (res) {
+        console.log('null openid')
+      }
+    })
+
   },
   insertUser: function (openid, score) {
     console.log(openid+'------'+score)
@@ -34,19 +52,6 @@ Page({
     wx.navigateTo({
       url: '../home/home',
     })
-
-    var that = this 
-    let score = wx.getStorageSync('user_score') || 0
-    wx.getStorage({
-      key: 'openid',
-      success: function(res) {
-        that.insertUser(res.data,score)
-      },
-      fail:function(res){
-        console.log('start null openid')
-      }
-    })
-
   },
   guess:function(e){
     wx.showToast({

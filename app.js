@@ -6,6 +6,7 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     let openid = wx.getStorageSync('openid');
+    var that = this
     if(!openid){
       wx.login({
         success: res => {
@@ -26,6 +27,11 @@ App({
                 key: 'openid',
                 data: res.data.openid,
               })
+
+              if (that.userInfoReadyCallback) {
+                that.userInfoReadyCallback(res)
+              }
+
             }, fail: function (e) {
               console.log(e)
             }
