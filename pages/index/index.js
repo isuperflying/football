@@ -16,10 +16,37 @@ Page({
       title: '世界杯大师',
     })
   },
+  insertUser: function (openid, score) {
+    console.log(openid+'------'+score)
+    wx.request({
+      url: 'https://www.antleague.com/updatescore',
+      method: 'POST',
+      data: {
+        'openid': openid,
+        'score': score
+      },
+      success: function (res) {
+        console.log(res.data)
+      },
+    })
+  },
   start:function(){
     wx.navigateTo({
       url: '../home/home',
     })
+
+    var that = this 
+    let score = wx.getStorageSync('user_score') || 0
+    wx.getStorage({
+      key: 'openid',
+      success: function(res) {
+        that.insertUser(res.data,score)
+      },
+      fail:function(res){
+        console.log('start null openid')
+      }
+    })
+
   },
   guess:function(e){
     wx.showToast({
@@ -42,4 +69,5 @@ Page({
       path: '../index/index'
     }
   }
+
 })

@@ -27,10 +27,11 @@
   margin-top:10%;
   line-height: 90rpx;
   font-weight: 600;
+  box-shadow: 2px 2px 1px #cdcdcd;
 }
 .every_day_btn{
-  background-color: #fff;
-  color: #333;
+  background-color: #fdd130;
+  color: #752808;
   border-radius: 30px;
   font-size: 16pt;
   width: 300rpx;
@@ -38,10 +39,11 @@
   line-height: 90rpx;
   margin-top: 30rpx;
   font-weight: 600;
+  box-shadow: 2px 2px 1px #e2880b;
 }
 .friends_btn{
-  background-color: #fff;
-  color: #333;
+  background-color: #57b846;
+  color: #fff;
   border-radius: 30px;
   font-size: 16pt;
   width: 300rpx;
@@ -49,10 +51,11 @@
   line-height: 90rpx;
   margin-top: 30rpx;
   font-weight: 600;
+  box-shadow: 2px 2px 1px #006400;
 }
 .mall_btn{
-  background-color: #fff;
-  color: #333;
+  background-color: #ffd8c3;
+  color: #ff5555;
   border-radius: 30px;
   font-size: 16pt;
   width: 300rpx;
@@ -60,4 +63,5 @@
   line-height: 90rpx;
   margin-top: 30rpx;
   font-weight: 600;
+  box-shadow: 2px 2px 1px #A0522D;
 }

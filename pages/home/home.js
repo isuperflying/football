@@ -57,6 +57,11 @@ Page({
       initNum = 4
     }
   },
+  back:function(){
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
   getData: function () {
     console.log('--->getData')
     var that = this;

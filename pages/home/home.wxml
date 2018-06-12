@@ -1,5 +1,9 @@
 <!--pages/home/home.wxml-->
 <view class='question'>
+  <view class='back-view' bindtap='back'>
+    <image src='../../images/back.png'></image>
+    <text>答题挑战</text>
+  </view>
   <block>
     <view class='title'>
       <image src='../../images/subject_title_bg.png'></image>
