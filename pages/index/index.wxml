@@ -2,7 +2,8 @@
 <view class='start-view'>
     <image class='start-top-img' mode='widthFix' src='../../images/start_top.png'></image>
     <button class='start_btn' bindtap='start'>开始答题</button>
-
-    
-
+    <button class='every_day_btn' bindtap='guess'>每日竞猜</button>
+    <button class='friends_btn' open-type="share">邀请好友</button>
+    <button class='mall_btn' bindtap='scoreMall'>积分商城</button>
+    <image class='start-bottom-img' mode='widthFix' src='../../images/start_bottom.png'></image>
 </view>

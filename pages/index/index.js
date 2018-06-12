@@ -11,66 +11,34 @@ Page({
     
   },
   onLoad:function(){
-    this.countdown();
+    wx.setNavigationBarTitle({
+      title: '世界杯大师',
+    })
   },
   start:function(){
     wx.navigateTo({
       url: '../home/home',
     })
   },
-  
-  begin: - (1 / 2 * Math.PI),
-  pai2: 2 * Math.PI,
-  //canvas画圆环
-  drawRang: function (precent) {
-    // 页面渲染完成  
-    var cxt_arc = wx.createCanvasContext('canvasArc');
-    var windowWidth = wx.getSystemInfoSync().windowWidth;
-    var poaitionX = wx.getSystemInfoSync().windowWidth / 2;
-    //var cxt_arc = this.cxt_arc;
-    cxt_arc.setLineWidth(10);
-    cxt_arc.setStrokeStyle('#ffffff');
-    cxt_arc.setLineCap('round')
-    cxt_arc.beginPath();//开始一个新的路径   
-    cxt_arc.arc(poaitionX, 30, 24, 0, this.pai2, false);//设置一个原点(106,106)，半径为100的圆的路径到当前路径  
-    cxt_arc.stroke();//对当前路径进行描边  
-    var end = this.pai2 * precent + this.begin;
-    if (precent == 0) {
-      end = this.pai2 * + this.begin
-    } else if (1 == precent) {
-      cxt_arc.setFillStyle('white');
-      cxt_arc.setFontSize(25);
-      cxt_arc.fillText(this.data.countdownNum, poaitionX - 7, 40);
-      cxt_arc.draw();
-      return;
-    }
-    cxt_arc.setLineWidth(6);
-    cxt_arc.setStrokeStyle('#F15A47');
-    cxt_arc.setLineCap('round')
-    cxt_arc.beginPath();//开始一个新的路径  
-    cxt_arc.arc(poaitionX, 30, 24, this.begin, end, true);
-    cxt_arc.stroke();//对当前路径进行描边  
-    cxt_arc.setFillStyle('white');
-    cxt_arc.setFontSize(25);
-    cxt_arc.fillText(this.data.countdownNum, poaitionX - 7, 40);
-    cxt_arc.draw();
+  guess:function(e){
+    wx.showToast({
+      title: '敬请期待',
+      icon:'none'
+    })
   },
-  countdown: function () {
-    var that = this;
-    that.rangRun = 0;
-    clearInterval(that.cuntDownCir);
-    that.cuntDownCir = setInterval(function () {
-      var n = initNum - Math.floor(that.rangRun / spaceNum);
-      var precent = that.rangRun / (initNum * spaceNum);
-      that.setData({
-        countdownNum: n
-      });
-      that.drawRang(precent);
-      that.rangRun = that.rangRun + space;
-      if (precent >= 1) {
-        that.data.allowDo = false;
-        clearInterval(that.cuntDownCir);
-      }
-    }, space);
+  scoreMall :function(){
+    wx.navigateTo({
+      url: '../mail/mail',
+    })
+  },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '快来参与世界杯挑战吧',
+      path: '../index/index'
+    }
   }
 })

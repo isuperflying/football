@@ -1,0 +1,7 @@
+<!--pages/mail/mail.wxml-->
+<view class='mail-list'>
+    <view class='mail-item' wx:for='{{maillist}}' wx:key='id' wx:for-item="item" bindtap='exchange' data-score='{{item.score}}'>
+        <image class='mail-img' src='{{item.img_url}}' mode='aspectFill'></image>
+        <text class='mail-title'>{{item.score_text}}</text>
+    </view>
+</view>

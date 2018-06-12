@@ -1,17 +1,18 @@
 <!--pages/home/home.wxml-->
-<view class='question'>
+<view class='question animated {{answerOver}}'>
+
   <block>
-    <view class='title'>
+    
+    <view class='title animated '>
       <image src='../../images/subject_title_bg.png'></image>
       <view class='title-text'><text>{{subject_title}}</text></view>
     </view>
+    <view class='countdown-view'>
+        <canvas class="cir" canvas-id="canvasArc">
+        </canvas>
+    </view>
   </block>
-  <view class='countdown-view'>
-      <view class='total-score'><text>积分：</text><text>{{total_score}}</text></view>
-      <canvas wx:if='{{show_canvas}}' class='cir' canvas-id="canvasArc">
-      </canvas>
-  </view>
-  <view class='answer-view animated  {{answerOver}}'>
+  <view class='answer-view'>
     <view wx:for='{{answers}}' wx:item='{{item}}' wx:key='{{id}}' data-index="{{index}}" bindtap='answer' class="answers">
       <block wx:if='{{index % 2 == 0}}'>
         <view class="{{index == clickIndex&&clickIndex!=='' ? answerColor : ''}} {{clickIndex == rightIndex ? '' : (rightIndex == index ? 'rightHit animated shake' : '')}} option animated bounceInLeft">
