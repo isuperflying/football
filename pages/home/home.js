@@ -29,7 +29,7 @@ Page({
   getData: function () {
     var that = this;
     wx.request({
-      url: 'http://127.0.0.1:8888/getfbdata',
+      url: 'http://127.0.0.1/getfbdata',
       method: 'GET',
       data: {
         'id': 1
