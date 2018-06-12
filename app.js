@@ -5,11 +5,12 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this
     wx.getStorage({
       key: 'openid',
       success: function(res) {
         console.log('已经存在--->'+res.data)
+        that.insertUser(res.data)
       },
       fail:function(){
         // 登录
@@ -27,6 +28,7 @@ App({
               },
               success: function (res) {
                 console.log('新获取用户openid--->'+res.data.openid)
+                that.insertUser(res.data.openid)
                 wx.setStorage({
                   key: 'openid',
                   data: res.data.openid,
@@ -38,8 +40,8 @@ App({
           }
         })
       }
-    })
-
+    }),
+   
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -59,6 +61,18 @@ App({
           })
         }
       }
+    })
+  },
+  insertUser: function (openid) {
+    wx.request({
+      url: 'https://www.antleague.com/insertuser',
+      method: 'POST',
+      data: {
+        'openid': openid
+      },
+      success: function (res) {
+        console.log(res.data)
+      },
     })
   },
   globalData: {

@@ -11,6 +11,7 @@ Page({
     
   },
   onLoad:function(){
+    console.log('index onLoad --->')
     wx.setNavigationBarTitle({
       title: '世界杯大师',
     })

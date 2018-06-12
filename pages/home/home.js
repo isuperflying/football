@@ -70,26 +70,35 @@ Page({
       },
       success: function (res) {
         wx.hideLoading();
-        
-        let answersArr = res.data.data.subject_options.split(' ');
-        right_key = res.data.data.right_key
-        //console.log('score--->'+res.data.data.total_score)
-        answerOrders.forEach(function (obj,index) {
-            if(obj == right_key){
-              rightIndex = index
-            }
-    　　});
-        userScore = res.data.data.total_score || 0
-        console.log('getscore--->' + userScore)
-        wx.setStorage({
-          key: 'user_score',
-          data: userScore,
-        })
-        that.setData({
-          subject_title: res.data.data.subject_title,
-          answers: answersArr,
-          total_score: userScore
-        });
+        console.log(res)
+        if (res.data.data){
+          let answersArr = res.data.data.subject_options.split(' ');
+          right_key = res.data.data.right_key
+          //console.log('score--->'+res.data.data.total_score)
+          answerOrders.forEach(function (obj,index) {
+              if(obj == right_key){
+                rightIndex = index
+              }
+      　　});
+          userScore = res.data.data.total_score || 0
+          console.log('getscore--->' + userScore)
+          wx.setStorage({
+            key: 'user_score',
+            data: userScore,
+          })
+          that.setData({
+            subject_title: res.data.data.subject_title,
+            answers: answersArr,
+            total_score: userScore
+          });
+
+        }else{
+          wx.showToast({
+            title: '数据异常',
+            icon:'none'
+          })
+        }
+
       },
       fail: function (res) {
         wx.hideLoading();
