@@ -11,7 +11,7 @@
     </view>
   </block>
   <view class='countdown-view'>
-      <view class='total-score'><text>积分：</text><text>{{total_score}}</text></view>
+      <view class='total-score animated {{answer_yes}}'><text>积分：</text><text>{{total_score}}</text></view>
       <canvas wx:if='{{show_canvas}}' class='cir' canvas-id="canvasArc">
       </canvas>
   </view>

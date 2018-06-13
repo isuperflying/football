@@ -10,7 +10,7 @@
 .back-view{
   position: absolute;
   left: 20rpx;
-  top: 66rpx;
+  top: 76rpx;
   z-index: 10000;
   display: flex;
   flex-direction: row;

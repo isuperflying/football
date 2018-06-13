@@ -47,22 +47,41 @@ Page({
     wx.setNavigationBarTitle({
       title: '积分商城',
     })
+    var that = this
+    wx.getStorage({
+      key: 'user_score',
+      success: function(res) {
+        that.setData({
+          total_score: res.data
+        })
+      },
+    })
   },
   exchange:function(e){
     let needScore = e.currentTarget.dataset.score
     let score = wx.getStorageSync('user_score')
     console.log("用户的积分--->" + score)
     if(score < needScore){
-      wx.showToast({
-        title: '积分不够，继续努力',
-        icon:'none'
+      wx.showModal({
+        title: '积分不够',
+        content: '你的积分不够，请继续努力',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
       })
     }else{
-      wx.showToast({
-        title: '手慢了，奖品已兑完',
-        icon: 'none'
+      wx.navigateTo({
+        url: '../inputinfo/inputinfo',
       })
     }
+  },
+  back: function () {
+    wx.redirectTo({
+      url: '../index/index',
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -109,7 +128,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  }
+  onShareAppMessage: function (res) {
+    
+    return {
+      title: '快来参与世界杯挑战吧',
+      path: '../home/home',
+      imageUrl: '../../images/start_bottom.png'
+    }
+  },
 })

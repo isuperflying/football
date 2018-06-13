@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/home/home",
     "pages/mail/mail",
+    "pages/inputinfo/inputinfo",
     "pages/logs/logs"
   ],
   "window":{

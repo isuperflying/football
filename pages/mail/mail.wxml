@@ -1,4 +1,9 @@
 <!--pages/mail/mail.wxml-->
+<view class='back-view' bindtap='back'>
+    <image src='../../images/mail_back.png'></image>
+    <text>积分商城</text>
+</view>
+<view class='total-score'><text class='score-normal'>你的积分：</text><text class='score-text'>{{total_score}}</text><text class='score-normal'>分</text></view>
 <view class='mail-list'>
     <view class='mail-item' wx:for='{{maillist}}' wx:key='id' wx:for-item="item" bindtap='exchange' data-score='{{item.score}}'>
         <image class='mail-img' src='{{item.img_url}}' mode='aspectFill'></image>

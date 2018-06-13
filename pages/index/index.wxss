@@ -27,7 +27,7 @@
   margin-top:10%;
   line-height: 90rpx;
   font-weight: 600;
-  box-shadow: 2px 2px 1px #cdcdcd;
+  box-shadow: 2px 2px 1px #1b541a;
 }
 .every_day_btn{
   background-color: #fdd130;

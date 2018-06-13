@@ -1,0 +1,25 @@
+<!--pages/inputInfo/inputInfo.wxml-->
+<view class='back-view' bindtap='back'>
+    <image src='../../images/black_back.png'></image>
+    <text>提交收货信息</text>
+</view>
+<view class='input-view'>
+  <view>
+      <text>收货人：</text>
+      <input bindinput='userInput'></input>
+  </view>
+  <view>
+      <text>收货地址：</text>
+      <input bindinput='addressInput'></input>
+  </view>
+  <view>
+      <text>联系电话：</text>
+      <input bindinput='phoneInput'></input>
+  </view>
+  <view>
+      <text>联系QQ：</text>
+      <input bindinput='qqInput'></input>
+  </view>
+
+  <button class='submit_btn' bindtap='submitInfo'>提交信息</button>
+</view>

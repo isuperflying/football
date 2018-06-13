@@ -49,6 +49,11 @@ Page({
     console.log('--->onready')
     // 页面渲染完成  
     cxt_arc = wx.createCanvasContext('canvasArc');
+    if (this.cuntDownCir) {
+      console.log('clear onready--->')
+      clearInterval(this.cuntDownCir);
+    }
+
     this.countdown();
     if(id > 30){
       initNum = 6
@@ -58,14 +63,18 @@ Page({
     }
   },
   back:function(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../index/index',
     })
   },
   getData: function () {
-    console.log('--->getData')
+    
     var that = this;
     id = parseInt(wx.getStorageSync('subjectid') || 1)
+    console.log('--->getData id'  + id)
+    this.setData({
+      answer_yes: ''
+    })
     wx.request({
       url: base_url + 'getfbdata',
       method: 'POST',
@@ -99,7 +108,7 @@ Page({
 
         }else{
           wx.showToast({
-            title: '数据异常',
+            title: '暂无数据',
             icon:'none'
           })
         }
@@ -120,7 +129,8 @@ Page({
       this.setData({
         clickIndex: e.currentTarget.dataset.index,
         answerColor: 'right',
-        rightIndex:rightIndex
+        rightIndex:rightIndex,
+        answer_yes:'flipInY'
       })
     } else {
       console.log('--->no')
@@ -138,11 +148,12 @@ Page({
     clearInterval(this.cuntDownCir);
     id++;
     console.log('id--->'+ id)
-    if(id > 101){
+    if(id > 500){
       wx.setStorageSync('subjectid', 1)
       wx.showModal({
         title: '挑战完成',
         content: '恭喜你，已经挑战完所有题目',
+        showCancel: false
       })
     }else{
       wx.setStorageSync('subjectid', id)
@@ -248,8 +259,21 @@ Page({
       if (precent >= 1) {
         that.data.allowDo = false;
         clearInterval(that.cuntDownCir);
-        //超时后调整到下一个题目
-        that.skipNext(that,false)
+
+        id++;
+        console.log('id--->' + id)
+        if (id > 500) {
+          wx.setStorageSync('subjectid', 1)
+          wx.showModal({
+            title: '挑战完成',
+            content: '恭喜你，已经挑战完所有题目',
+            showCancel: false
+          })
+        } else {
+          wx.setStorageSync('subjectid', id)
+          //跳转到下一个题目
+          that.updateScore(false);
+        }
       }
     }, space);
   },
@@ -265,6 +289,12 @@ Page({
       title: '快来参与世界杯挑战吧',
       path: '../home/home',
       imageUrl:'../../images/start_bottom.png'
+    }
+  },
+  onUnload:function(e){
+    if (this.cuntDownCir){
+      console.log('cuntDownCir--->'+this.cuntDownCir)
+      clearInterval(this.cuntDownCir);
     }
   }
 })

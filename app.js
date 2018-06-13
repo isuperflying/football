@@ -6,30 +6,30 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
     let openid = wx.getStorageSync('openid');
+    console.log('app.js openid--->' + openid)
     var that = this
     if(!openid){
       wx.login({
         success: res => {
           // 发送 res.code 到后台换取 openId, sessionKey, unionId
           wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session',
-            method: 'GET',
+            url: 'https://www.antleague.com/getopenid',
+            method: 'POST',
             data: {
-              'appid': 'wx262a3df94d990a62',
-              'secret': 'cce2d5a322b5f8f12bab352eee2762e9',
-              'js_code': res.code,
-              'grant_type': 'authorization_code'
+              'wxcode': res.code
             },
             success: function (res) {
-              console.log(res)
-              console.log('新获取用户openid--->' + res.data.openid)
+              
+              var wxobj = JSON.parse(res.data.data)
+
+              console.log('新获取用户openid--->' + wxobj.openid)
               wx.setStorage({
                 key: 'openid',
-                data: res.data.openid,
+                data: wxobj.openid,
               })
 
               if (that.userInfoReadyCallback) {
-                that.userInfoReadyCallback(res)
+                that.userInfoReadyCallback(wxobj)
               }
 
             }, fail: function (e) {

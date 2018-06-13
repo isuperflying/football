@@ -16,23 +16,23 @@ Page({
       title: '世界杯大师',
     })
 
-    app.userInfoReadyCallback = res => {
-      console.log('call back openid ' + res.data.openid)
-      that.insertUser(res.data.openid, score)
-    }
-
     var that = this
     let score = wx.getStorageSync('user_score') || 0
+    app.userInfoReadyCallback = res => {
+      let opid = res.openid
+      console.log('call back openid ' + opid)
+      that.insertUser(opid, score)
+    }
+
     wx.getStorage({
       key: 'openid',
       success: function (res) {
         that.insertUser(res.data, score)
       },
       fail: function (res) {
-        console.log('null openid')
+        console.log('null openid--->')
       }
     })
-
   },
   insertUser: function (openid, score) {
     console.log(openid+'------'+score)
@@ -53,15 +53,21 @@ Page({
       url: '../home/home',
     })
   },
-  guess:function(e){
-    wx.showToast({
-      title: '敬请期待',
-      icon:'none'
-    })
-  },
   scoreMall :function(){
     wx.navigateTo({
       url: '../mail/mail',
+    })
+  },
+  everyDay:function(){
+    wx.showModal({
+      title: '敬请期待',
+      content: '还在开发中,请耐心等待',
+      showCancel:false,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        }
+      }
     })
   },
   onShareAppMessage: function (res) {
