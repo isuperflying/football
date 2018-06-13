@@ -77,7 +77,8 @@ Page({
     }
     return {
       title: '快来参与世界杯挑战吧',
-      path: '../index/index'
+      path: '/pages/index/index',
+      imageUrl: '../../images/start_bottom.png'
     }
   }
 

@@ -55,11 +55,11 @@ Page({
     }
 
     this.countdown();
-    if(id > 30){
-      initNum = 6
+    if(id > 60){
+      initNum = 7
     }
-    if(id > 80) {
-      initNum = 4
+    if(id > 90) {
+      initNum = 6
     }
   },
   back:function(){
@@ -287,7 +287,7 @@ Page({
     }
     return {
       title: '快来参与世界杯挑战吧',
-      path: '../home/home',
+      path: '/pages/index/index',
       imageUrl:'../../images/start_bottom.png'
     }
   },
